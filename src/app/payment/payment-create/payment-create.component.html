@@ -1,0 +1,84 @@
+<div class="payment-create-container">
+  <mat-card>
+    <form (submit)="onFormSubmit()" [formGroup]="form">
+      <mat-form-field>
+        <input
+            NumbersOnly
+            [allowDecimals]="false"
+            formControlName="creditCardNumber"
+            matInput
+            maxlength="16"
+            name="creditCardNumber"
+            placeholder="Credit Card Number"
+            required
+            type="text"
+        >
+        <mat-error *ngIf="form.get('creditCardNumber').invalid">Please enter your card
+          number.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+      <textarea
+          formControlName="cardholder"
+          matInput
+          maxlength="30"
+          name="cardholder"
+          placeholder="Card holder"
+          required
+      ></textarea>
+        <mat-error *ngIf="form.get('cardholder').invalid">Please enter your card holder
+          name.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input
+            [matDatepicker]="picker"
+            (click)="picker.open()"
+            [max]="maxDate"
+            [min]="minDate"
+            formControlName="expirationDate"
+            matInput
+            name="expirationDate"
+            placeholder="Expiration Date"
+            required
+        >
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('expirationDate').invalid">Please enter card expiration
+          date.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+      <textarea
+          formControlName="securityCode"
+          matInput
+          maxlength="3"
+          name="securityCode"
+          placeholder="Security Code"
+      ></textarea>
+        <mat-error *ngIf="form.get('securityCode').invalid">Please enter card security
+          code.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+      <textarea
+          NumbersOnly
+          formControlName="amount"
+          matInput
+          name="amount"
+          placeholder="Amount"
+          required
+      ></textarea>
+        <mat-error *ngIf="form.get('amount').invalid">Please enter a post title.</mat-error>
+      </mat-form-field>
+      <button
+          [disabled]="form.invalid"
+          color="accent"
+          mat-raised-button
+          type="submit">Save Payment
+      </button>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,25 @@
+<mat-accordion *ngIf="payments.length > 0" class="payment-list-container" multi="true">
+  <mat-expansion-panel *ngFor="let payment of payments">
+    <mat-expansion-panel-header>
+      {{ payment.cardholder }}
+    </mat-expansion-panel-header>
+    <p>{{ 'creditCardNumber: ' + payment.creditCardNumber }}</p>
+    <p>{{ 'expirationDate: ' + payment.expirationDate }}</p>
+    <p *ngIf="payment.securityCode">{{ 'securityCode is ' + payment.securityCode }}</p>
+    <p>{{ 'amount is ' + payment.amount }}</p>
+    <mat-action-row *ngIf="userIsAuthenticated && userId === payment.creator">
+      <button [routerLink]="['/edit', payment.id]" color="primary" mat-button>EDIT</button>
+      <button (click)="onDelete(payment.id)" color="warn" mat-button>DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator
+    (page)="onChangedPage($event)"
+    *ngIf="payments.length > 0 && !isLoading"
+    [length]="totalPosts"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="postsPerPage"
+></mat-paginator>
+<p *ngIf="payments.length <= 0" class="info-text mat-body-1">
+  No payment methods added yet!
+</p>
