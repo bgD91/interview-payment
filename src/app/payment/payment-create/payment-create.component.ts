@@ -14,8 +14,7 @@ import {AuthService} from '../../auth/auth.service';
     styleUrls: ['./payment-create.component.css']
 })
 export class PaymentCreateComponent implements OnInit, OnDestroy {
-    enteredTitle = '';
-    enteredContent = '';
+    cardHolder = '';
 
     private componentState = 'create';
     private postId: string;
@@ -58,7 +57,8 @@ export class PaymentCreateComponent implements OnInit, OnDestroy {
                     validators:
                         [
                             Validators.required,
-                            Validators.minLength(3)
+                            Validators.minLength(3),
+                            Validators.pattern('^[a-zA-Z \-\']+'),
                         ]
                 }
             ),

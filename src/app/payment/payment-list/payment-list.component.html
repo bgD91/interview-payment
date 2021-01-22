@@ -5,8 +5,8 @@
     </mat-expansion-panel-header>
     <p>{{ 'creditCardNumber: ' + payment.creditCardNumber }}</p>
     <p>{{ 'expirationDate: ' + payment.expirationDate }}</p>
-    <p *ngIf="payment.securityCode">{{ 'securityCode is ' + payment.securityCode }}</p>
-    <p>{{ 'amount is ' + payment.amount }}</p>
+    <p *ngIf="payment.securityCode">{{ 'securityCode: ' + payment.securityCode }}</p>
+    <p>{{ 'amount: ' + payment.amount }}</p>
     <mat-action-row *ngIf="userIsAuthenticated && userId === payment.creator">
       <button [routerLink]="['/edit', payment.id]" color="primary" mat-button>EDIT</button>
       <button (click)="onDelete(payment.id)" color="warn" mat-button>DELETE</button>
