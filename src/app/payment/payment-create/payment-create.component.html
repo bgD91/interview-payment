@@ -37,6 +37,7 @@
             [matDatepicker]="picker"
             [max]="maxDate"
             [min]="minDate"
+            (keydown)="$event.preventDefault()"
             formControlName="expirationDate"
             matInput
             name="expirationDate"
