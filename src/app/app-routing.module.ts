@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'edit/:postId',
+    path: 'edit/:paymentId',
     component: PaymentCreateComponent,
     canActivate: [AuthGuard]
   },

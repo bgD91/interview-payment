@@ -60,9 +60,9 @@ export class PaymentListComponent implements OnInit, OnDestroy {
         this.postsService.getPayments(this.postsPerPage, this.currentPage);
     }
 
-    onDelete(postId: string) {
+    onDelete(paymentId: string) {
         this.isLoading = true;
-        this.postsService.deletePayment(postId).subscribe(
+        this.postsService.deletePayment(paymentId).subscribe(
           () => {
             this.postsService.getPayments(this.postsPerPage, this.currentPage);
         }, () => {

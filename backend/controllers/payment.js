@@ -38,11 +38,17 @@ exports.editPayment = (req, res, next) => {
 
   const payment = new Payment({
     _id: req.body.id,
-    title: req.body.title,
-    content: req.body.content,
+    cardholder: req.body.cardholder,
+    creditCardNumber: req.body.creditCardNumber,
+    expirationDate: req.body.expirationDate,
+    amount: +req.body.amount,
+    securityCode: req.body.securityCode,
     creator: req.userData.userId,
-    // imagePath: imagePath,
   });
+
+  console.log(payment);
+  console.log(req.params.id);
+  console.log(req.userData.userId);
 
   Payment.updateOne({
       _id: req.params.id,
@@ -50,20 +56,21 @@ exports.editPayment = (req, res, next) => {
     },
     payment)
     .then(result => {
+      // console.log(result);
       if (result.n > 0) {
         res.status(200).json({
-          message: "Update successful!"
+          message: 'Update successful!',
         });
       } else {
         res.status(401).json({
-          message: "Not Authorized"
+          message: 'Not Authorized',
         });
       }
     })
     .catch(error => {
       res.status(500).json({
         message: "Couldn't update payment method",
-        error: error
+        error: error,
       })
     });
 };

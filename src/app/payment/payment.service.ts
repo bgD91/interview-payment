@@ -75,7 +75,6 @@ export class PaymentService {
 
   editPayment(
     id: string,
-    title: string,
     cardholder: string,
     creditCardNumber: string,
     expirationDate: Date,
@@ -92,7 +91,7 @@ export class PaymentService {
       creator: null,
       securityCode: securityCode ? securityCode : null,
     };
-    return this.http.put<{ payment: PaymentDTO }>(BACKEND_URL + `/${id}`, postData)
+    return this.http.put<{ payment: PaymentDTO }>(BACKEND_URL + `${id}`, postData)
       .subscribe((response) => {
         this.router.navigate(['/']);
       });
