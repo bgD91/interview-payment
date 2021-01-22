@@ -44,6 +44,8 @@ export class AuthService {
     return this.http.post(BACKEND_URL + '/register', authData)
       .subscribe(() => {
         this.router.navigate(['/']);
+        this.loginUser(email, password);
+        this.authStatusListener.next(true);
       }, error => {
         this.authStatusListener.next(false);
       });
